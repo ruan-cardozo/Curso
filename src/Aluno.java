@@ -1,20 +1,21 @@
-public class Aluno {
+public class Aluno extends Pessoa {
+
 	private String matricula;
 
-	private String nome;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Aluno aluno)) return false;
+		if (!super.equals(o)) return false;
 
-	private String endereco;
+		return getMatricula() != null ? getMatricula().equals(aluno.getMatricula()) : aluno.getMatricula() == null;
+	}
 
-	private String telefone;
-
-	private String email;
-
-	public Aluno(String matricula, String nome, String endereco, String telefone, String email) {
-		this.matricula = matricula;
-		this.nome = nome;
-		this.endereco = endereco;
-		this.telefone = telefone;
-		this.email = email;
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (getMatricula() != null ? getMatricula().hashCode() : 0);
+		return result;
 	}
 
 	public String getMatricula() {
@@ -23,37 +24,5 @@ public class Aluno {
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 }

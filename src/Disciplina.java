@@ -1,15 +1,30 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Disciplina {
-	private String codigo;
-
 	private String nome;
+	public Disciplina(String nome) {
+		this.nome = nome;
+	}
 
-	int cargahoraria;
+	@Override
+	public String toString() {
+		return "Disciplina{" +
+				"nome='" + nome + '\'' +
+				'}';
+	}
 
-	private String ementa;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Disciplina that)) return false;
 
-	private class professor professor;
+		return Objects.equals(nome, that.nome);
+	}
 
-	List<Matriculado>;
+	@Override
+	public int hashCode() {
+		return nome != null ? nome.hashCode() : 0;
+	}
 }
