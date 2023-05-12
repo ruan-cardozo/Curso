@@ -1,9 +1,9 @@
-package org.catolicasc.educational;
-
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Main {
 	public static void main(String[] args) {
+		Logger log = Logger.getAnonymousLogger();
 		// cria um curso
 		Curso curso = new Curso("Engenharia de Software", 4);
 
@@ -23,7 +23,13 @@ public class Main {
 		Matricula solicitarMatricula = new Matricula(aluno1,prog1, 2023, 1);
 
 		// matricula os alunos em algumas disciplinas
-		curso.solicitarMatricula(solicitarMatricula);
+		try {
+			curso.solicitarMatricula(solicitarMatricula);
+		} catch (ExececaoDeAlunoNaoMatriculadoNoCurso e) {
+			log.severe(e.getMessage());
+		} catch (DisciplinaInexistente e) {
+			log.severe(e.getMessage());
+		}
 
 
 		// obtém a lista de alunos matriculados no curso

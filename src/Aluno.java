@@ -2,6 +2,7 @@ public class Aluno extends Pessoa {
 
 	private String matricula;
 
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

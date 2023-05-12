@@ -89,11 +89,20 @@ public class Curso {
 				// se a disciplina for do curso e o aluno tambem
 				this.matricular(solicitacao);
 			} else {
-				// ops
+				try {
+					throw new ExececaoDeAlunoNaoMatriculadoNoCurso(aluno, this);
+				} catch (ExececaoDeAlunoNaoMatriculadoNoCurso e) {
+					throw new RuntimeException(e);
+				}
 			}
 
 		} else {
 			// ops estao tentando matricular em uma disciplina inexistente
+			try {
+				throw new Exception("Disciplina nao existe no curso" + solicitacao.getDisciplina());
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
 		}
 
 	}
